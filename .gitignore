@@ -1,13 +1,65 @@
-# dependencies
+# Node modules
 /node_modules
 
-# misc
-.DS_Store
-
-# local env files
-**/*.env
-
-# debug
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Local environment files
+**/*.env
+
+# Dependency directories
+/.pnp
+.pnp.js
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local build files
+/build
+/dist
+
+# Coverage files
+/coverage
+
+# React Native
+.expo
+*.expo
+
+# Logs
+*.log
+
+# Yarn
+.yarn/
+!.yarn/releases/
+!.yarn/plugins/
+!.yarn/sdks/
+!.yarn/versions/
+
+# TypeScript
+*.tsbuildinfo
+
+# Lint cache
+.eslintcache
+
+# Editor-specific files
+*.swp
+*~ 
+.project
+.settings
+.vscode
+*.code-workspace
+
+# IDE-specific
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Netlify deployment files (if you're using Netlify)
+/netlify.toml
