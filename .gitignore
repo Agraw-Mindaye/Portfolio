@@ -3,3 +3,11 @@
 
 # misc
 .DS_Store
+
+# local env files
+**/*.env
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
