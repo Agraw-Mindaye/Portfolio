@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "jsx": "react-jsx", // Ensure this is set
+      "jsx": "react-jsx",
       "strict": true,
       "module": "ESNext",
       "target": "ES6",
