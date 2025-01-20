@@ -1,0 +1,55 @@
+/* src/styles/globals.css */
+
+/* Reset margins, paddings, and box-sizing */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set default font and background color */
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Ensure anchor tags don't have default styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Reset images to be responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Add a smooth scroll effect */
+html {
+  scroll-behavior: smooth;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+}

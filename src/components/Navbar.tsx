@@ -1,52 +1,68 @@
-import { CSSProperties } from "react";
-
-const navStyles : CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '1rem 2rem',
-    backgroundColor: '#f8f9fa', // Light gray background
-    borderBottom: '1px solid #e0e0e0', // Optional border for separation
-    position: 'fixed',
-    top: 0,
-    width: '100%',
-    zIndex: 1000,
-}
-
-const nameContainerStyles: CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-}
+import { useState, useEffect } from "react";
+import "./../styles/Navbar.css";
 
 const Navbar = () => {
-    return (
-        <nav style={navStyles}>
-            <div style={nameContainerStyles}>
-                {/* Name left aligned */}
-                <a
-                    href="/"
-                    style={{
-                        fontSize: '1.5rem',
-                        fontWeight: 'bold',
-                        textDecoration: 'none',
-                        color: '#333'
-                    }}
-                >Agraw Mindaye
-                </a>
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("#about");
 
-                <span style={{
-                    fontSize: '1.5rem',
-                    marginLeft: '0.5rem',
-                    color: '#000'
+  const toggleMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
 
-                }}
-                >|</span>
+  // Update active link based on hash change
+  useEffect(() => {
+    const handleHashChange = () => {
+      setActiveLink(window.location.hash || "#about");
+    };
 
+    window.addEventListener("hashchange", handleHashChange);
+    handleHashChange(); // Initialize active link
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
-            </div>
-        </nav>
-    )
+  return (
+    <nav className="navbar">
+      {/* Logo */}
+      <div className="name">
+        <a href="/">Agraw Mindaye</a>
+      </div>
 
-}
+      {/* Separator */}
+      <span className="separator"></span>
+
+      {/* Hamburger Menu */}
+      <div className="menu-toggle" onClick={toggleMenu}>
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
+      </div>
+
+      {/* Navigation Links */}
+      <ul className={`nav-links ${isMobileMenuOpen ? "active" : ""}`}>
+        <li>
+          <a href="#about" className={activeLink === "#about" ? "active" : ""}>
+            About
+          </a>
+        </li>
+        <li>
+          <a
+            href="#projects"
+            className={activeLink === "#projects" ? "active" : ""}
+          >
+            Projects
+          </a>
+        </li>
+        <li>
+          <a
+            href="#contact"
+            className={activeLink === "#contact" ? "active" : ""}
+          >
+            Contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
 export default Navbar;
