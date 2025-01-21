@@ -18,7 +18,7 @@
     z-index: 1000;
   }
   
-  /* Logo */
+  /* Name */
   .name a {
     color: #fff;
     text-decoration: none;
@@ -40,16 +40,15 @@
     display: flex;
     list-style: none;
   }
-  
+    
   .nav-links a {
     color: #d3d3d36f; /* Light grey links */
     text-decoration: none;
     font-size: 18px;
     transition: color 0.3s, background-color 0.3s;
-    padding: 5px 10px;
+    padding: 0.5rem 0.75rem;
   }
   
-  .nav-links a:hover,
   .nav-links a.active {
     color: #e0e0e0; /* Lighter grey on hover/active */
     background-color: #2c3e50; /* Darker background on hover */
@@ -88,12 +87,13 @@
     }
   
     .nav-links li {
-      margin: 10px 0;
-      text-align: center;
+      margin: 10px 20px;
+      
     }
   
     .menu-toggle {
       display: flex; /* Show hamburger on mobile */
+      margin-left: auto;
     }
   }
   

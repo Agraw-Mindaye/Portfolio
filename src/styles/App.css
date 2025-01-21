@@ -1,0 +1,10 @@
+/* Parent container for sections */
+.content-container {
+    margin-top: 100px; /* Account for the fixed navbar height */
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    height: calc(100vh - 70px); /* Full height minus navbar height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+  }
+  
