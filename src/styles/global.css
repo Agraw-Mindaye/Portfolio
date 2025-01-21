@@ -1,9 +1,7 @@
 /* src/styles/globals.css */
 
 /* Reset margins, paddings, and box-sizing */
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
