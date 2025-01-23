@@ -1,8 +1,9 @@
-const About = () => {
-    return (
-        <div>About Placeholder</div>
-    )
 
-}
+
+const About = () => {
+  return (
+    <div>About</div>
+  );
+};
 
 export default About;

@@ -1,53 +1,64 @@
-import { useEffect, useState } from "react";
-import "./../styles/Navbar.css";
+import { CSSProperties } from "react";
 
 const Navbar = () => {
-  const [activeLink, setActiveLink] = useState("#about");
+  const navbarStyle: CSSProperties = {
+    position: "sticky",
+    top: 0,
+    zIndex: 1000,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#ffffff",
+    padding: "10px 20px",
+    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+  };
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActiveLink(window.location.hash || "#about");
-    };
+  const nameStyle: CSSProperties = {
+    fontSize: "18px",
+    fontWeight: "bold",
+    color: "#333",
+    background: "none",
+    border: "none",
+  };
 
-    window.addEventListener("hashchange", handleHashChange);
-    handleHashChange(); // Initialize active link
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
+  const navLinksStyle: CSSProperties = {
+    display: "flex",
+    listStyle: "none",
+    gap: "20px",
+    margin: 0,
+    padding: 0,
+  };
 
-  const scrollToHero = () => {
-    const heroSection = document.querySelector(".hero-section");
-    heroSection?.scrollIntoView({ behavior: "smooth" });
+  const linkStyle: CSSProperties = {
+    textDecoration: "none",
+    color: "#007BFF",
+    fontSize: "16px",
+    fontWeight: "500",
+    cursor: "pointer",
   };
 
   return (
-    <nav className="navbar">
-      {/* Logo */}
-      <div className="name">
-        <button onClick={scrollToHero}>
+    <nav style={navbarStyle}>
+      <div>
+        <div style={nameStyle}>
           Agraw Mindaye
-        </button>
+        </div>
       </div>
 
       {/* Navigation Links */}
-      <ul className="nav-links">
+      <ul style={navLinksStyle}>
         <li>
-          <a href="#about" className={activeLink === "#about" ? "active" : ""}>
+          <a href="#about" style={linkStyle}>
             About
           </a>
         </li>
         <li>
-          <a
-            href="#projects"
-            className={activeLink === "#projects" ? "active" : ""}
-          >
+          <a href="#projects" style={linkStyle}>
             Projects
           </a>
         </li>
         <li>
-          <a
-            href="#contact"
-            className={activeLink === "#contact" ? "active" : ""}
-          >
+          <a href="#contact" style={linkStyle}>
             Contact
           </a>
         </li>
