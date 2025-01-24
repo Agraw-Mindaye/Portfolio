@@ -1,3 +1,5 @@
+// Main application container
+
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Projects from "./components/Projects";
@@ -13,7 +15,7 @@ const heroSectionStyle: CSSProperties = {
   justifyContent: "center",
   height: "100vh",
   textAlign: "center",
-  backgroundColor: "#000",
+  backgroundColor: "#111827",
   color: "#333",
   padding: "20px",
 };
@@ -24,16 +26,14 @@ const buttonStyle: CSSProperties = {
   fontSize: "16px",
   fontWeight: "bold",
   color: "#fff",
-  backgroundColor: "#007BFF",
+  backgroundColor: "#22c55e",
   border: "none",
   borderRadius: "5px",
   cursor: "pointer",
 };
 
 const contentContainerStyle: CSSProperties = {
-  margin: "0 auto",
-  maxWidth: "1200px",
-  padding: "20px",
+  backgroundColor: '#111827'
 };
 
 
@@ -55,13 +55,13 @@ export default function App() {
       {/* Hero Section */}
       <header style={heroSectionStyle}>
         <h1 style={{color: 'white'}}>Hello, I'm Agraw.</h1>
-        <p style={{color: 'white'}}>I am a software engineer.</p>
+        <p style={{color: 'white'}}>I'm a software engineer.</p>
         <button onClick={scrollToContent} style={buttonStyle}>
           Welcome to my page ↓
         </button>
       </header>
 
-      {/* Sticky Navbar */}
+      {/* Navbar */}
       <Navbar />
 
       {/* Content Sections */}
