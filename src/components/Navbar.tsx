@@ -1,3 +1,5 @@
+// Navbar
+
 import { CSSProperties } from "react";
 
 const Navbar = () => {
@@ -8,7 +10,7 @@ const Navbar = () => {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#1F2937",
     padding: "10px 20px",
     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
   };
@@ -16,7 +18,7 @@ const Navbar = () => {
   const nameStyle: CSSProperties = {
     fontSize: "18px",
     fontWeight: "bold",
-    color: "#333",
+    color: "#fff",
     background: "none",
     border: "none",
   };
@@ -31,8 +33,8 @@ const Navbar = () => {
 
   const linkStyle: CSSProperties = {
     textDecoration: "none",
-    color: "#007BFF",
-    fontSize: "16px",
+    color: "#fff",
+    fontSize: "1.25rem",
     fontWeight: "500",
     cursor: "pointer",
   };
