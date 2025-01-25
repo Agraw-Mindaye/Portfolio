@@ -4,54 +4,61 @@ import { useSpring, animated } from "@react-spring/web";
 import { FaReact, FaPython, FaGitAlt, FaDatabase, FaJsSquare } from "react-icons/fa";
 import { SiC } from "react-icons/si"; // C icon
 
+import { useMediaQuery } from "../hooks/useMediaQuery";
+
 import { CSSProperties } from "react";
 
 const About = () => {
+  const breakpoint = useMediaQuery();
+
+  const isMobile = breakpoint === "xs" || breakpoint === "sm"; // For small screens < 768px
+  const isTablet = breakpoint === "md" || breakpoint === "lg"; // For 768px ≤ width < 1280px
+
   const aboutSectionStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginBottom: '5rem'
   };
 
   const titleStyle: CSSProperties = {
-    position: 'relative',
-    fontSize: "4rem",
-    marginTop: '5rem',
-    marginBottom: "8rem",
-    color: '#fff',
-    borderBottom: 'solid 4px #22c55e',
+    position: "relative",
+    fontSize: isTablet ? "2.5rem" : isMobile ? "1.75rem" : "3rem",
+    marginTop: "5rem",
+    marginBottom: isMobile ? "3rem" : isTablet ? "5rem" : "8rem",
+    color: "#fff",
+    borderBottom: "solid 4px #22c55e",
   };
 
   const aboutContainerStyle: CSSProperties = {
     display: "flex",
+    flexDirection: isMobile || isTablet ? "column" : "row", // Column for mobile or tablet, row otherwise
     alignItems: "center",
-    justifyContent: "center",
-    gap: "7rem",
+    justifyContent: isMobile ? "center" : "space-between", // Center content on smaller screens
+    gap: isMobile ? "2.5rem" : isTablet ? "4rem" : "7rem", // Smaller gaps for mobile and tablet
     maxWidth: "1200px",
-    width: "100%", 
-    margin: "0 auto", // Center the container horizontally
+    width: "100%",
+    margin: "0 auto", // Center horizontally
   };
 
   const textContainerStyle: CSSProperties = {
-    flex: "1 1 50%",
     textAlign: "left",
+    maxWidth: isMobile ? "90%" : isTablet ? "70%" : "50%", // Adjust width for different screen sizes
   };
 
   const descriptionStyle: CSSProperties = {
     fontSize: "18px",
     lineHeight: "1.8",
-    marginBottom: "20px",
     color: "#E0E0E0",
   };
 
   const skillsContainerStyle: CSSProperties = {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)", // Three columns
-    gridTemplateRows: "repeat(2, auto)", // Two rows
-    gap: "20px", // Gap between rows and columns
+    gridTemplateColumns: "repeat(3, 1fr)", // Adjust grid for screens
+    gap: "20px", // Consistent gap
     marginTop: "20px",
-    justifyItems: "center", // Center items horizontally
-    alignItems: "center", // Center items vertically
+    justifyItems: "center",
+    alignItems: "center",
   };
 
   const AnimatedIcon = ({ icon, label, borderColor }: { icon: JSX.Element; label: string; borderColor: string }) => {
@@ -65,8 +72,8 @@ const About = () => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      width: "10rem", // Fixed width
-      height: "10rem", // Fixed height
+      width: isMobile ? "7rem" : "10rem", // Fixed width
+      height:  isMobile ? "7rem" : "10rem", // Fixed height
       padding: "20px",
       borderRadius: "15px",
       border: `4px solid ${borderColor}`, // Colorful border
@@ -76,7 +83,7 @@ const About = () => {
     };
 
     const iconStyle: CSSProperties = {
-      fontSize: "48px", // Increased icon size
+      fontSize: isMobile ? "2rem" : "3rem", // Increased icon size
       marginBottom: "10px",
     };
 
@@ -106,7 +113,7 @@ const About = () => {
             in modern frameworks like React, Python, and SQL. I thrive at the intersection of creativity and technology, 
             crafting seamless user experiences and efficient solutions. Constantly striving for growth, I embrace 
             life-long learning to stay at the forefront of the ever-evolving tech landscape. 
-            Outside of coding, I enjoy cooking, reading, staying active, and exploring new technologies
+            Outside of coding, I enjoy cooking, reading, staying active, and exploring new technologies.
           </p>
         </div>
 
@@ -134,3 +141,4 @@ const About = () => {
 };
 
 export default About;
+
