@@ -9,16 +9,34 @@ import Footer from "./components/Footer";
 import {CSSProperties} from "react";
 
 const heroSectionStyle: CSSProperties = {
+  position: "relative",
   display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
   height: "100vh",
-  textAlign: "center",
-  backgroundColor: "#111827",
-  color: "#333",
-  padding: "20px",
+  width: "100%",
+  backgroundColor: "#111827"
 };
+
+const introStyle: CSSProperties = {
+  position: 'relative',
+  alignSelf: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  width: 'fit-content',
+  height: 'auto',
+  margin: '0 auto',
+  color: '#fff',
+  textAlign: 'center'
+}
+
+const headerStyle: CSSProperties = {
+  fontSize: '2rem',
+  color: '#fff'
+}
+
+const paragraphStyle: CSSProperties = {
+  fontSize: '2rem',
+  color: '#fff'
+}
 
 const buttonStyle: CSSProperties = {
   marginTop: "20px",
@@ -53,13 +71,16 @@ export default function App() {
   return (
     <main>
       {/* Hero Section */}
-      <header style={heroSectionStyle}>
-        <h1 style={{color: 'white'}}>Hello, I'm Agraw.</h1>
-        <p style={{color: 'white'}}>I'm a software engineer.</p>
-        <button onClick={scrollToContent} style={buttonStyle}>
-          Welcome to my page ↓
-        </button>
-      </header>
+
+      <div style={heroSectionStyle}>
+        <header style={introStyle}>
+          <h1 style={headerStyle}>Hello, I'm Agraw.</h1>
+          <p style={paragraphStyle}>I'm a software engineer.</p>
+          <button onClick={scrollToContent} style={buttonStyle}>
+            Welcome to my page ↓
+          </button>
+        </header>
+      </div>
 
       {/* Navbar */}
       <Navbar />
