@@ -49,7 +49,6 @@ const Contact = () => {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: "5rem",
   };
 
   const titleStyle: CSSProperties = {
