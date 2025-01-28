@@ -61,5 +61,5 @@ Thumbs.db
 *.sln
 *.sw?
 
-# Netlify deployment files (if you're using Netlify)
-/netlify.toml
+# Environment variables
+.env
