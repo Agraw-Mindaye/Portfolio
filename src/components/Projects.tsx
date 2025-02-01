@@ -12,6 +12,7 @@ const Projects = () => {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    gap: "5rem",
   };
 
   const titleStyle: CSSProperties = {
@@ -23,112 +24,125 @@ const Projects = () => {
     borderBottom: "solid 4px #22c55e",
   };
 
-  const gridStyle: CSSProperties = {
-    display: "grid",
-    gridTemplateColumns: isMobile || isTablet ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
-    gap: isMobile ? "0.5rem" : "2rem",
-    maxWidth: "1200px",
-    padding: "0 1rem",
-    justifyContent: "center", // Center the grid items horizontally
-    alignContent: "center", // Center the rows vertically
-  };
-  
-  const cardStyle: CSSProperties = {
-    backgroundColor: "#1F2937",
-    borderRadius: "10px",
-    padding: "1.5rem",
-    color: "#E0E0E0",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+  const projectContainerStyle = (index: number): CSSProperties => ({
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
+    flexDirection: index % 2 === 0 ? "row" : "row-reverse", // Alternates layout
     alignItems: "center",
-    width: isMobile ? "12rem" : isTablet ? "16rem" : "17rem", // Fixed width
-    height: isMobile ? "18rem" : isTablet ? "24rem" : "25rem", // Fixed height
+    width: "100%",
+    maxWidth: "100%",
+    position: "relative",
+    marginBottom: "30rem",
+  });
+
+  const imageContainerStyle = (index: number): CSSProperties => ({
+    width: isMobile ? "100%" : "50vw", // Half the viewport width
+    height: "40rem",
+    backgroundColor: "#3216bb", // Green background
+    display: "flex",
+    alignItems: "center",
+    justifyContent: index % 2 === 0 ? "left" : "right",
+    top: "0",
+    position: "absolute",
+  });
+
+  const imageStyle: CSSProperties = {
+    width: "80%", // Ensures image takes up 80% of its container
+  };
+
+  const descriptionContainerStyle = (index: number): CSSProperties => ({
+    width: isMobile ? "90%" : "45%",
+    padding: "2rem",
+    backgroundColor: "#1F2937",
+    textAlign: isMobile ? "center" : "left",
+    color: "#fff",
+    marginLeft: index % 2 === 0 ? "auto" : "0",
+    marginRight: index % 2 === 0 ? "0" : "auto",
+    zIndex: 1, // Ensure text is above the image
+    position: "relative",
+  });
+
+  const projectTitleStyle: CSSProperties = {
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+    marginBottom: "0.5rem",
   };
 
   const projectDescriptionStyle: CSSProperties = {
-    fontSize: isTablet ? "1.25rem" : "1rem",
-    textAlign: 'center'
-  }
+    fontSize: "1rem",
+    marginBottom: "1rem",
+  };
 
   const buttonStyle: CSSProperties = {
-    marginTop: "1rem",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    gap: "8px",
     padding: "10px 15px",
-    backgroundColor: "#22c55e",
+    backgroundColor: "#3216bb",
     color: "#fff",
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
     fontSize: "1rem",
+    textDecoration: "none",
   };
-
-  const AnimatedCard = ({ project }: { project: { title: string; description: string; link: string } }) => {
-    const [springStyle, api] = useSpring(() => ({
-      transform: "scale(1)",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-    }));
-
-    const handleMouseEnter = () =>
-      api.start({ transform: "scale(1.05)", boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)" });
-
-    const handleMouseLeave = () =>
-      api.start({ transform: "scale(1)", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)" });
-
-    return (
-      <animated.div
-        style={{ ...cardStyle, ...springStyle }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <h3>{project.title}</h3>
-        <p style={projectDescriptionStyle}>{project.description}</p>
-        <a href={project.link} target="_blank" rel="noopener noreferrer">
-          <button style={buttonStyle}>
-            <FaGithub style={{ marginRight: "8px" }} />
-            View
-          </button>
-        </a>
-      </animated.div>
-    );
-  };
-
-  const projects = [
-    {
-      title: "Project 1",
-      description: "This is a brief description of project 1.",
-      link: "https://github.com/yourusername/project1",
-    },
-    {
-      title: "Project 2",
-      description: "This is a brief description of project 2.",
-      link: "https://github.com/yourusername/project2",
-    },
-    {
-      title: "Project 3",
-      description: "This is a brief description of project 3.",
-      link: "https://github.com/yourusername/project3",
-    },
-    {
-      title: "Project 4",
-      description: "This is a brief description of project 3.",
-      link: "https://github.com/yourusername/project3",
-    }
-  ];
 
   return (
     <section id="projects" style={projectSectionStyle}>
       <h2 style={titleStyle}>Projects</h2>
-      <div style={gridStyle}>
-        {projects.map((project, index) => (
-          <AnimatedCard key={index} project={project} />
-        ))}
-      </div>
+
+      {projects.map((project, index) => (
+        <div key={index} style={projectContainerStyle(index)}>
+          {/* Image Container */}
+          <div style={imageContainerStyle(index)}>
+            {project.image && (
+              <img
+                src={project.image}
+                alt={project.title}
+                style={imageStyle}
+              />
+            )}
+          </div>
+
+          {/* Description Container */}
+          <div style={descriptionContainerStyle(index)}>
+            <h3 style={projectTitleStyle}>{project.title}</h3>
+            <p style={projectDescriptionStyle}>{project.description}</p>
+            <a href={project.link} target="_blank" rel="noopener noreferrer" style={buttonStyle}>
+              <FaGithub />
+              View Project
+            </a>
+          </div>
+        </div>
+      ))}
     </section>
   );
 };
+
+const projects = [
+  {
+    title: "Project 1",
+    description: "This is a brief description of project 1.",
+    link: "https://github.com/yourusername/project1",
+    image: "/assets/images/codingimage.jpg", // Replace with actual image path
+  },
+  {
+    title: "Project 2",
+    description: "This is a brief description of project 2.",
+    link: "https://github.com/yourusername/project2",
+    image: "/assets/images/codingimage.jpg", // Replace with actual image path
+  },
+  {
+    title: "Project 3",
+    description: "This is a brief description of project 3.",
+    link: "https://github.com/yourusername/project3",
+    image: "/assets/images/codingimage.jpg", // Replace with actual image path
+  },
+  {
+    title: "Project 4",
+    description: "This is a brief description of project 4.",
+    link: "https://github.com/yourusername/project4",
+    image: "/assets/images/codingimage.jpg", // Replace with actual image path
+  },
+];
 
 export default Projects;
