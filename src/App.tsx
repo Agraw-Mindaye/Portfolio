@@ -21,6 +21,7 @@ const introStyle: CSSProperties = {
   alignSelf: 'center',
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
   width: 'fit-content',
   height: 'auto',
   margin: '0 auto',
@@ -28,25 +29,20 @@ const introStyle: CSSProperties = {
   textAlign: 'center'
 }
 
-const headerStyle: CSSProperties = {
-  fontSize: '2rem',
-  color: '#fff'
-}
-
-const paragraphStyle: CSSProperties = {
+const textStyle: CSSProperties = {
   fontSize: '2rem',
   color: '#fff'
 }
 
 const buttonStyle: CSSProperties = {
-  marginTop: "20px",
-  padding: "10px 20px",
+  marginTop: "1rem",
+  padding: "0.8rem 3rem",
   fontSize: "16px",
   fontWeight: "bold",
-  color: "#fff",
-  backgroundColor: "#22c55e",
-  border: "none",
-  borderRadius: "5px",
+  color: "#22c55e",
+  border: 'solid',
+  borderRadius: "2px",
+  borderColor: '#22c55e',
   cursor: "pointer",
 };
 
@@ -74,8 +70,8 @@ export default function App() {
 
       <div style={heroSectionStyle}>
         <header style={introStyle}>
-          <h1 style={headerStyle}>Hello, I'm Agraw.</h1>
-          <p style={paragraphStyle}>I'm a software engineer.</p>
+          <div style={textStyle}>Hello, I'm Agraw.</div>
+          <div style={textStyle}>I'm a software engineer.</div>
           <button onClick={scrollToContent} style={buttonStyle}>
             Welcome to my page ↓
           </button>
