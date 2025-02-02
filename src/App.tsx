@@ -65,7 +65,7 @@ export default function App() {
   };
 
   return (
-    <main>
+    <main style={{backgroundColor: "#111827"}}>
       {/* Hero Section */}
 
       <div style={heroSectionStyle}>
