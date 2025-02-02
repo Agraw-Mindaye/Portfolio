@@ -1,5 +1,5 @@
-import { useSpring, animated } from "@react-spring/web";
-import { FaGithub } from "react-icons/fa";
+import { useState } from "react";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { CSSProperties } from "react";
 
@@ -12,7 +12,7 @@ const Projects = () => {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: "5rem",
+    marginBottom: "2rem",
   };
 
   const titleStyle: CSSProperties = {
@@ -24,124 +24,122 @@ const Projects = () => {
     borderBottom: "solid 4px #22c55e",
   };
 
-  const projectContainerStyle = (index: number): CSSProperties => ({
-    display: "flex",
-    flexDirection: index % 2 === 0 ? "row" : "row-reverse", // Alternates layout
-    alignItems: "center",
+  // Grid layout styles for responsiveness
+  const gridStyle: CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", // 4x1 for mobile, 2x2 for others
+    gap: isMobile ? "2rem" : "3rem",
+    maxWidth: "1200px",
     width: "100%",
-    maxWidth: "100%",
-    position: "relative",
-    marginBottom: "30rem",
-  });
-
-  const imageContainerStyle = (index: number): CSSProperties => ({
-    width: isMobile ? "100%" : "50vw", // Half the viewport width
-    height: "40rem",
-    backgroundColor: "#3216bb", // Green background
-    display: "flex",
-    alignItems: "center",
-    justifyContent: index % 2 === 0 ? "left" : "right",
-    top: "0",
-    position: "absolute",
-  });
-
-  const imageStyle: CSSProperties = {
-    width: "80%", // Ensures image takes up 80% of its container
-  };
-
-  const descriptionContainerStyle = (index: number): CSSProperties => ({
-    width: isMobile ? "90%" : "45%",
-    padding: "2rem",
-    backgroundColor: "#1F2937",
-    textAlign: isMobile ? "center" : "left",
-    color: "#fff",
-    marginLeft: index % 2 === 0 ? "auto" : "0",
-    marginRight: index % 2 === 0 ? "0" : "auto",
-    zIndex: 1, // Ensure text is above the image
-    position: "relative",
-  });
-
-  const projectTitleStyle: CSSProperties = {
-    fontSize: "1.5rem",
-    fontWeight: "bold",
-    marginBottom: "0.5rem",
-  };
-
-  const projectDescriptionStyle: CSSProperties = {
-    fontSize: "1rem",
-    marginBottom: "1rem",
-  };
-
-  const buttonStyle: CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    padding: "10px 15px",
-    backgroundColor: "#3216bb",
-    color: "#fff",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    fontSize: "1rem",
-    textDecoration: "none",
+    padding: "0 1rem",
+    justifyContent: isMobile ? "center" : "space-between",
   };
 
   return (
     <section id="projects" style={projectSectionStyle}>
       <h2 style={titleStyle}>Projects</h2>
 
-      {projects.map((project, index) => (
-        <div key={index} style={projectContainerStyle(index)}>
-          {/* Image Container */}
-          <div style={imageContainerStyle(index)}>
-            {project.image && (
-              <img
-                src={project.image}
-                alt={project.title}
-                style={imageStyle}
-              />
-            )}
-          </div>
-
-          {/* Description Container */}
-          <div style={descriptionContainerStyle(index)}>
-            <h3 style={projectTitleStyle}>{project.title}</h3>
-            <p style={projectDescriptionStyle}>{project.description}</p>
-            <a href={project.link} target="_blank" rel="noopener noreferrer" style={buttonStyle}>
-              <FaGithub />
-              View Project
-            </a>
-          </div>
-        </div>
-      ))}
+      <div style={gridStyle}>
+        {projects.map((project, index) => (
+          <ProjectCard key={index} project={project} isMobile={isMobile} />
+        ))}
+      </div>
     </section>
   );
 };
 
+// **Project Card Component**
+const ProjectCard = ({
+  project,
+  isMobile,
+}: {
+  project: { title: string; description: string; link: string; live: string };
+  isMobile: boolean;
+}) => {
+  // Card container
+  const cardContainerStyle: CSSProperties = {
+    perspective: "1000px",
+    display: "flex",
+    justifyContent: "center",
+  };
+
+  // Card size adjustments for different screen sizes
+  const cardStyle: CSSProperties = {
+    width: isMobile ? "80%" : "100%", // Smaller cards for mobile, full width for others
+    height: isMobile ? "15rem" : "20rem",
+    position: "relative",
+    borderRadius: "10px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    backgroundColor: "#1F2937",
+    padding: "1.5rem",
+    color: "#E0E0E0",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+  };
+
+  const buttonStyle: CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    padding: "8px 12px",
+    backgroundColor: "#22c55e",
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontSize: "0.9rem",
+    textDecoration: "none",
+  };
+
+  return (
+    <div style={cardContainerStyle}>
+      <div style={cardStyle}>
+        <h3 style={{ fontSize: "1.5rem", fontWeight: "bold", textAlign: "center", color: "#22c55e" }}>
+          {project.title}
+        </h3>
+        <p style={{ fontSize: "1rem", textAlign: "center", marginBottom: "1rem" }}>{project.description}</p>
+        <div style={{ display: "flex", gap: "10px" }}>
+          {/* Live App Button */}
+          <a href={project.live} target="_blank" rel="noopener noreferrer" style={buttonStyle}>
+            <FaExternalLinkAlt /> Live App
+          </a>
+          {/* GitHub Button */}
+          <a href={project.link} target="_blank" rel="noopener noreferrer" style={buttonStyle}>
+            <FaGithub /> GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Projects data
 const projects = [
   {
-    title: "Project 1",
-    description: "This is a brief description of project 1.",
-    link: "https://github.com/yourusername/project1",
-    image: "/assets/images/codingimage.jpg", // Replace with actual image path
+    title: "Awesome Social",
+    description: "A social media marketing agency that helps clients build their brand presence online",
+    link: "https://github.com/alexkahndev/awesome-social",
+    live: "https://awesomesocial.app/",
   },
   {
-    title: "Project 2",
-    description: "This is a brief description of project 2.",
-    link: "https://github.com/yourusername/project2",
-    image: "/assets/images/codingimage.jpg", // Replace with actual image path
+    title: "Bergen Routes",
+    description: "A wayfinding web application to help users navigate large buildings",
+    link: "https://github.com/bergen-routes/bergenroutes.com",
+    live: "https://bergenroutes.com/",
   },
   {
-    title: "Project 3",
-    description: "This is a brief description of project 3.",
-    link: "https://github.com/yourusername/project3",
-    image: "/assets/images/codingimage.jpg", // Replace with actual image path
+    title: "Portfolio Site",
+    description: "My personal portfolio showcasing my work and skills.",
+    link: "https://github.com/yourusername/portfolio",
+    live: "https://yourportfolio.com/",
   },
   {
-    title: "Project 4",
-    description: "This is a brief description of project 4.",
-    link: "https://github.com/yourusername/project4",
-    image: "/assets/images/codingimage.jpg", // Replace with actual image path
+    title: "Weather App",
+    description: "A simple weather app that fetches real-time weather data.",
+    link: "https://github.com/yourusername/weatherapp",
+    live: "https://weatherapp.com/",
   },
 ];
 

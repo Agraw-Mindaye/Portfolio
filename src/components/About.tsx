@@ -18,6 +18,7 @@ const About = () => {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    marginBottom: '2rem'
   };
 
   const titleStyle: CSSProperties = {
@@ -71,8 +72,8 @@ const About = () => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      width: isMobile ? "7rem" : "10rem", // Fixed width
-      height:  isMobile ? "7rem" : "10rem", // Fixed height
+      width: isMobile ? "5.5rem" : "10rem", // Fixed width
+      height:  isMobile ? "5.55rem" : "10rem", // Fixed height
       padding: "20px",
       borderRadius: "15px",
       border: `4px solid ${borderColor}`, // Colorful border
@@ -82,9 +83,13 @@ const About = () => {
     };
 
     const iconStyle: CSSProperties = {
-      fontSize: isMobile ? "2rem" : "3rem", // Increased icon size
+      fontSize: isMobile ? "1.5rem" : "3rem",
       marginBottom: "10px",
     };
+
+    const labelStyle: CSSProperties = { 
+      fontSize: isMobile ? "0.8rem" : "1.5rem", // Increased icon size
+    }
 
     return (
       <animated.div
@@ -93,7 +98,7 @@ const About = () => {
         onMouseLeave={() => api.start({ transform: "scale(1)" })}
       >
         <div style={iconStyle}>{icon}</div>
-        <span>{label}</span>
+        <span style={labelStyle}>{label}</span>
       </animated.div>
     );
   };

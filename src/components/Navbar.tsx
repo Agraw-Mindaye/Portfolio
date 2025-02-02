@@ -27,7 +27,8 @@ const Navbar = () => {
   const navLinksStyle: CSSProperties = {
     display: "flex",
     listStyle: "none",
-    gap: "1rem",
+    gap: "2rem",
+    marginRight: isMobile ? '0' : '3rem',
   };
 
   const linkStyle: CSSProperties = {
@@ -36,7 +37,6 @@ const Navbar = () => {
     fontSize: isMobile ? "1.2rem" : "1.5rem", // Smaller font size for smaller screens
     fontWeight: "500",
     cursor: "pointer",
-    marginRight: "3rem",
   };
 
   return (
