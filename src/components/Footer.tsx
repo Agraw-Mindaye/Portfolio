@@ -20,6 +20,7 @@ const Footer = () => {
   const iconContainerStyle: CSSProperties = {
     display: "flex",
     gap: "1.5rem",
+    marginBottom: "0.5rem"
   };
 
   const iconStyle: CSSProperties = {
@@ -49,6 +50,7 @@ const Footer = () => {
           />
         </a>
       </div>
+      <div style={{color: "#fff"}}>Agraw Mindaye</div>
     </footer>
   );
 };

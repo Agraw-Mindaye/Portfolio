@@ -48,7 +48,6 @@ const Projects = () => {
   );
 };
 
-// **Project Card Component**
 const ProjectCard = ({
   project,
   isMobile,
@@ -66,7 +65,7 @@ const ProjectCard = ({
   // Card size adjustments for different screen sizes
   const cardStyle: CSSProperties = {
     width: isMobile ? "80%" : "100%", // Smaller cards for mobile, full width for others
-    height: isMobile ? "15rem" : "20rem",
+    height: isMobile ? "18rem" : "20rem",
     position: "relative",
     borderRadius: "10px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
