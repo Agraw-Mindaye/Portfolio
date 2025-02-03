@@ -57,7 +57,7 @@ const Contact = () => {
     marginTop: "5rem",
     marginBottom: isMobile ? "3rem" : "5rem",
     color: "#fff",
-    borderBottom: "solid 4px #22c55e",
+    borderBottom: "solid 4px #f97316",
   };
 
   const formStyle: CSSProperties = {
@@ -88,7 +88,7 @@ const Contact = () => {
     color: "#fff",
     border: "none",
     borderRadius: "5px",
-    fontSize: "1rem",
+    fontSize: "1.5rem",
     cursor: "pointer",
     marginBottom: '2rem'
   };

@@ -27,7 +27,7 @@ const About = () => {
     marginTop: "5rem",
     marginBottom: isMobile ? "3rem" : isTablet ? "5rem" : "8rem",
     color: "#fff",
-    borderBottom: "solid 4px #22c55e",
+    borderBottom: "solid 4px #f97316",
   };
 
   const aboutContainerStyle: CSSProperties = {
@@ -114,22 +114,22 @@ const About = () => {
         <div style={textContainerStyle}>
           <p style={descriptionStyle}>
             Driven by a passion for innovation and problem-solving, I am a dedicated software developer with expertise 
-            in modern frameworks like React, Python, and SQL. I thrive at the intersection of creativity and technology, 
+            in modern technologies like C/C++, React, Python, and SQL. I thrive at the intersection of creativity and technology, 
             crafting seamless user experiences and efficient solutions. Constantly striving for growth, I embrace 
             life-long learning to stay at the forefront of the ever-evolving tech landscape. 
-            Outside of coding, I enjoy cooking, reading, staying active, and exploring new technologies.
+            Outside of coding, I enjoy cooking, reading, staying active, and exploring music.
           </p>
         </div>
 
         {/* Right-Side Skills */}
         <div style={skillsContainerStyle}>
           {[
-            { icon: <SiC />, label: "C", borderColor: "#A8B9CC" },
-            { icon: <FaPython />, label: "Python", borderColor: "#3776AB" },
-            { icon: <FaJsSquare />, label: "JavaScript", borderColor: "#F7DF1E" },
-            { icon: <FaReact />, label: "React", borderColor: "#61DAFB" },
-            { icon: <FaDatabase />, label: "SQL", borderColor: "#00758F" },
-            { icon: <FaGitAlt />, label: "Git", borderColor: "#F05032" },
+            { icon: <SiC />, label: "C", borderColor: "#f97316" },
+            { icon: <FaPython />, label: "Python", borderColor: "#f97316" },
+            { icon: <FaJsSquare />, label: "JavaScript", borderColor: "#f97316" },
+            { icon: <FaReact />, label: "React", borderColor: "#f97316" },
+            { icon: <FaDatabase />, label: "SQL", borderColor: "#f97316" },
+            { icon: <FaGitAlt />, label: "Git", borderColor: "#f97316" },
           ].map((skill, index) => (
             <AnimatedIcon
               key={index}

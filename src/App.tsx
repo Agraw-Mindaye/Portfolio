@@ -39,10 +39,10 @@ const buttonStyle: CSSProperties = {
   padding: "0.8rem 3rem",
   fontSize: "16px",
   fontWeight: "bold",
-  color: "#22c55e",
+  color: "#f97316",
   border: 'solid',
   borderRadius: "2px",
-  borderColor: '#22c55e',
+  borderColor: '#f97316',
   cursor: "pointer",
 };
 

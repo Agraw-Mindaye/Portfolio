@@ -21,7 +21,7 @@ const Projects = () => {
     marginTop: "5rem",
     marginBottom: isMobile ? "3rem" : isTablet ? "5rem" : "8rem",
     color: "#fff",
-    borderBottom: "solid 4px #22c55e",
+    borderBottom: "solid 4px #f97316",
   };
 
   // Grid layout styles for responsiveness
@@ -83,9 +83,9 @@ const ProjectCard = ({
     alignItems: "center",
     gap: "8px",
     padding: "8px 12px",
-    backgroundColor: "#22c55e",
+    // backgroundColor: "#22c55e",
     color: "#fff",
-    border: "none",
+    border: "2px solid #f97316",
     borderRadius: "5px",
     cursor: "pointer",
     fontSize: "0.9rem",
@@ -95,7 +95,7 @@ const ProjectCard = ({
   return (
     <div style={cardContainerStyle}>
       <div style={cardStyle}>
-        <h3 style={{ fontSize: "1.5rem", fontWeight: "bold", textAlign: "center", color: "#22c55e" }}>
+        <h3 style={{ fontSize: "2rem", fontWeight: "bold", textAlign: "center", color: "#f97316" }}>
           {project.title}
         </h3>
         <p style={{ fontSize: "1rem", textAlign: "center", marginBottom: "1rem" }}>{project.description}</p>
