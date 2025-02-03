@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { CSSProperties } from "react";
