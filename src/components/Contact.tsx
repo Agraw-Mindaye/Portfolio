@@ -24,26 +24,20 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID!;
     const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID!;
     const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY!;
-
-
-    emailjs
-    .send(serviceId, templateId, formData, publicKey)
+  
+    emailjs.send(serviceId, templateId, formData, publicKey)
       .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text);
-          setStatus("Message sent successfully!");
-          setFormData({ from_name: "", email: "", message: "" });
-        },
-        (err) => {
-          console.error("FAILED...", err);
-          setStatus("Failed to send message. Please try again.");
-        }
+        () => setStatus("Message sent successfully!"),
+        () => setStatus("Failed to send message. Please try again.")
       );
+  
+    setFormData({ from_name: "", email: "", message: "" });
   };
+  
 
   const contactSectionStyle: CSSProperties = {
     display: "flex",

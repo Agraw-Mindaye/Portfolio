@@ -61,19 +61,19 @@ const Navbar = () => {
       {!isMobile && <div style={nameStyle}>Agraw Mindaye</div>}
       <ul style={navLinksStyle}>
         <li>
-          <a onClick={() => handleNavClick("#about")} style={linkStyle("#about")}>
+          <button onClick={() => handleNavClick("#about")} style={linkStyle("#about")}>
             About
-          </a>
+          </button>
         </li>
         <li>
-          <a onClick={() => handleNavClick("#projects")} style={linkStyle("#projects")}>
+          <button onClick={() => handleNavClick("#projects")} style={linkStyle("#projects")}>
             Projects
-          </a>
+          </button>
         </li>
         <li>
-          <a onClick={() => handleNavClick("#contact")} style={linkStyle("#contact")}>
+          <button onClick={() => handleNavClick("#contact")} style={linkStyle("#contact")}>
             Contact
-          </a>
+          </button>
         </li>
       </ul>
     </nav>
