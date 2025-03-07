@@ -119,7 +119,7 @@ const projects = [
     title: "Awesome Social",
     description: "A social media marketing agency that helps clients build their brand presence online",
     link: "https://github.com/alexkahndev/awesome-social",
-    live: "https://awesomesocial.app/",
+    live: "https://nagy.vc/",
   },
   {
     title: "Bergen Routes",
@@ -130,14 +130,14 @@ const projects = [
   {
     title: "Portfolio Site",
     description: "My personal portfolio showcasing my work and skills.",
-    link: "https://github.com/yourusername/portfolio",
-    live: "https://yourportfolio.com/",
+    link: "https://github.com/Agraw-Mindaye/Portfolio",
+    live: "https://agrawmin.netlify.app",
   },
   {
-    title: "Weather App",
-    description: "A simple weather app that fetches real-time weather data.",
-    link: "https://github.com/yourusername/weatherapp",
-    live: "https://weatherapp.com/",
+    title: "Embedded Projects",
+    description: "A collection of embedded systems projects.",
+    link: "https://github.com/Agraw-Mindaye/EmbeddedProjects",
+    live: "https://en.wikipedia.org/wiki/Embedded_system",
   },
 ];
 
