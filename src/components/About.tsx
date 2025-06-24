@@ -5,7 +5,6 @@ import { FaReact, FaPython, FaGitAlt, FaDatabase, FaJsSquare } from "react-icons
 import { SiC } from "react-icons/si"; // C icon
 
 import { useMediaQuery } from "../hooks/useMediaQuery";
-
 import { CSSProperties } from "react";
 
 const About = () => {
@@ -76,10 +75,10 @@ const About = () => {
       height:  isMobile ? "5.55rem" : "10rem", // Fixed height
       padding: "20px",
       borderRadius: "15px",
-      border: `4px solid ${borderColor}`, // Colorful border
-      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.5)", // Subtle shadow
-      color: "#22c55e", // Text and icon color
-      fontSize: "18px", // Font size for the skill name
+      border: `4px solid ${borderColor}`,
+      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.5)",
+      color: "#22c55e",
+      fontSize: "18px",
     };
 
     const iconStyle: CSSProperties = {
@@ -88,7 +87,7 @@ const About = () => {
     };
 
     const labelStyle: CSSProperties = { 
-      fontSize: isMobile ? "0.8rem" : "1.5rem", // Increased icon size
+      fontSize: isMobile ? "0.8rem" : "1.5rem",
     }
 
     return (
@@ -113,15 +112,15 @@ const About = () => {
         {/* Text Content */}
         <div style={textContainerStyle}>
           <p style={descriptionStyle}>
-            Driven by a passion for innovation and problem-solving, I am a dedicated software developer with expertise 
-            in modern technologies like C/C++, React, Python, and SQL. I thrive at the intersection of creativity and technology, 
-            crafting seamless user experiences and efficient solutions. Constantly striving for growth, I embrace 
-            life-long learning to stay at the forefront of the ever-evolving tech landscape. 
-            Outside of coding, I enjoy cooking, reading, staying active, and exploring music.
+            <p>Driven by a passion for problem solving, I'm a software engineer committed
+            to building effecient embedded and full-stack solutions.</p>
+            With expertise in modern technologies like C/C++, Python, React, and SQL, I strive 
+            to craft seamless user experiences and write clean, maintainble code.
+            When I'm not at my computer, I spend my time cooking, staying active, and exploring new music.
           </p>
         </div>
 
-        {/* Right-Side Skills */}
+        {/* Skills */}
         <div style={skillsContainerStyle}>
           {[
             { icon: <SiC />, label: "C", borderColor: "#f97316" },
