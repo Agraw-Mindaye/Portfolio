@@ -1,18 +1,17 @@
-# 🌐 Portfolio Website
+# Portfolio Website
 
-Welcome to my portfolio website!  
+Welcome to my portfolio project!  
 
-## 🚀 Live Website:  
+## Live Website:  
 [agrawmin.netlify.app](https://agrawmin.netlify.app)  
 
-## 📌 Features  
-- Responsive design for all devices  
-- Project showcase with descriptions  
-- Contact form for inquiries  
-- Interactive UI with smooth animations  
+## Features  
+- A responsive design for all devices (desktop and mobile)
+- Showcasees projects with links and descriptions  
+- Includes a contact form for inquiries  
 
-## 🛠️ Technologies Used  
-- HTML, CSS, JavaScript  
-- React.js
-- Typescipt 
+## Technologies Used  
+- HTML/CSS, JavaScript  
+- React.js, TypeScript
+
 
