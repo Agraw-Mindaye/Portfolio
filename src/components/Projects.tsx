@@ -1,6 +1,6 @@
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
-import { useMediaQuery } from "../hooks/useMediaQuery";
-import { CSSProperties } from "react";
+import { useMediaQuery} from "../hooks/useMediaQuery";
+import { CSSProperties, useState } from "react";
 
 // projects data
 const projects = [
@@ -88,6 +88,11 @@ function ProjectCard({
   const breakpoint = useMediaQuery();
   const isMobile = breakpoint === "xs" || breakpoint === "sm";
 
+  const [hoverLive, setHoverLive] = useState(false);
+  const [hoverGit, setHoverGit] = useState(false);
+
+  const isPointerCapable = window.matchMedia("(hover: hover) and (pointer: fine)").matches; // for hover animations
+
   const cardStyle: CSSProperties = {
     display: "flex",
     flexDirection: "column",
@@ -109,28 +114,23 @@ function ProjectCard({
     marginTop: "1rem",
   };
 
-  const buttonStyle: CSSProperties = {
+  const linkButtonStyle = (isHovered: boolean): CSSProperties => ({
     display: "flex",
     alignItems: "center",
     gap: 8,
     padding: "8px 12px",
-    color: "#fff",
-    border: "2px solid #f97316",
-    borderRadius: 5,
     fontSize: "0.9rem",
+    borderRadius: 5,
+    border: "2px solid #f97316",
+    color: isHovered ? "#fff" : "#fff",
+    backgroundColor: isHovered ? "#f97316" : "transparent",
     textDecoration: "none",
-  };
+    transition: "all 0.3s ease",
+  });
 
   return (
     <article style={cardStyle}>
-      <h3
-        style={{
-          fontSize: "1.8rem",
-          fontWeight: "bold",
-          color: "#f97316",
-          marginBottom: "0.5rem",
-        }}
-      >
+      <h3 style={{ fontSize: "1.8rem", fontWeight: "bold", color: "#f97316", marginBottom: "0.5rem" }}>
         {project.title}
       </h3>
 
@@ -138,12 +138,34 @@ function ProjectCard({
 
       <div style={buttonRowStyle}>
         {project.live && (
-          <a href={project.live} target="_blank" rel="noopener noreferrer" style={buttonStyle}>
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={linkButtonStyle(hoverLive)}
+            onMouseEnter={() => {
+              if (isPointerCapable) setHoverLive(true);
+            }}
+            onMouseLeave={() => {
+              if (isPointerCapable) setHoverLive(false);
+            }}
+          >
             <FaExternalLinkAlt /> Live App
           </a>
         )}
         {project.link && (
-          <a href={project.link} target="_blank" rel="noopener noreferrer" style={buttonStyle}>
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={linkButtonStyle(hoverGit)}
+            onMouseEnter={() => {
+              if (isPointerCapable) setHoverGit(true);
+            }}
+            onMouseLeave={() => {
+              if (isPointerCapable) setHoverGit(false);
+            }}
+          >
             <FaGithub /> GitHub
           </a>
         )}
