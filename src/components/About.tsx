@@ -90,11 +90,17 @@ const About = () => {
       fontSize: isMobile ? "0.8rem" : "1.5rem",
     }
 
+    const isPointerCapable = window.matchMedia("(hover: hover) and (pointer: fine)").matches; // for hover animations
+
     return (
       <animated.div
         style={{ ...skillBoxStyle, ...springStyle }}
-        onMouseEnter={() => api.start({ transform: "scale(1.2)" })}
-        onMouseLeave={() => api.start({ transform: "scale(1)" })}
+        onMouseEnter={() => {
+          if (isPointerCapable) api.start({ transform: "scale(1.2)" })}
+        }
+        onMouseLeave={() => {
+          if (isPointerCapable) api.start({ transform: "scale(1)" })}
+        }
       >
         <div style={iconStyle}>{icon}</div>
         <span style={labelStyle}>{label}</span>
