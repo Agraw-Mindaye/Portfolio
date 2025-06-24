@@ -1,13 +1,45 @@
-import { useState, CSSProperties } from "react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
+import { useEffect, useState, CSSProperties } from "react";
 
 const Navbar = () => {
   const breakpoint = useMediaQuery();
   const isMobile = breakpoint === "xs" || breakpoint === "sm";
 
-  const [activeSection, setActiveSection] = useState<string>("");
+  const [activeSection, setActiveSection] = useState<string>("#about");
 
-  // Function to handle smooth scrolling
+  useEffect(() => {
+    const sectionIds = ["about", "projects", "contact"] as const;
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    if (sections.length === 0) return;
+
+    // when a section crosses the center 40% of the viewport, mark it active
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      {
+        // rootMargin tweaks trigger point so the observed area is roughly the
+        // middle of the screen (40% top & bottom margins)
+        root: null,
+        rootMargin: "-40% 0px -40% 0px",
+        threshold: 0
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+
+  // function to handle nav link slection
   const handleNavClick = (section: string) => {
     setActiveSection(section);
     const target = document.querySelector(section);
