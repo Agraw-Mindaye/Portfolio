@@ -2,16 +2,45 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { CSSProperties } from "react";
 
-const Projects = () => {
+// projects data
+const projects = [
+  {
+    title: "Smart Environmental Dashboard",
+    description:
+      "A temperature and humidity sensor that logs readings onto an SD card and displays them on an LCD screen.",
+    link: "https://github.com/Agraw-Mindaye/EmbeddedSystems/tree/main/Milestone2_Smart_Environment_Dashboard",
+  },
+  {
+    title: "Awesome Social",
+    description:
+      "An online social platform that helps clients build their brand presence online, providing branding, marketing, and sales solutions.",
+    link: "https://github.com/alexkahndev/awesome-social",
+  },
+  {
+    title: "Bergen Routes",
+    description:
+      "A way‑finding web application designed to assist users in navigating large buildings.",
+    link: "https://github.com/bergen-routes/bergenroutes.com",
+    live: "https://bergenroutes.com/",
+  },
+  {
+    title: "Embedded Projects",
+    description: "A collection of my embedded systems roadmap and projects.",
+    link: "https://github.com/Agraw-Mindaye/EmbeddedSystems",
+  },
+] as const;
+
+export default function Projects() {
   const breakpoint = useMediaQuery();
-  const isMobile = breakpoint === "xs" || breakpoint === "sm"; // For small screens < 768px
-  const isTablet = breakpoint === "md" || breakpoint === "lg"; // For 768px ≤ width < 1280px
+  const isMobile = breakpoint === "xs" || breakpoint === "sm";
+  const isTablet = breakpoint === "md" || breakpoint === "lg";
 
   const projectSectionStyle: CSSProperties = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     marginBottom: "2rem",
+    scrollMarginTop: "80px",
   };
 
   const titleStyle: CSSProperties = {
@@ -23,15 +52,14 @@ const Projects = () => {
     borderBottom: "solid 4px #f97316",
   };
 
-  // Grid layout styles for responsiveness
+  /** Grid forces 2x2 layout on tablet/desktop, 1x4 on mobile */
   const gridStyle: CSSProperties = {
     display: "grid",
-    gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", // 4x1 for mobile, 2x2 for others
+    gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
     gap: isMobile ? "2rem" : "3rem",
     maxWidth: "1200px",
     width: "100%",
     padding: "0 1rem",
-    justifyContent: isMobile ? "center" : "space-between",
   };
 
   return (
@@ -39,106 +67,87 @@ const Projects = () => {
       <h2 style={titleStyle}>Projects</h2>
 
       <div style={gridStyle}>
-        {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} isMobile={isMobile} />
+        {projects.map((project, idx) => (
+          <ProjectCard key={idx} project={project} />
         ))}
       </div>
     </section>
   );
-};
+}
 
-const ProjectCard = ({
+function ProjectCard({
   project,
-  isMobile,
 }: {
-  project: { title: string; description: string; link: string; live: string };
-  isMobile: boolean;
-}) => {
-  // Card container
-  const cardContainerStyle: CSSProperties = {
-    perspective: "1000px",
-    display: "flex",
-    justifyContent: "center",
+  project: {
+    title: string;
+    description: string;
+    link?: string;
+    live?: string;
   };
+}) {
+  const breakpoint = useMediaQuery();
+  const isMobile = breakpoint === "xs" || breakpoint === "sm";
 
-  // Card size adjustments for different screen sizes
   const cardStyle: CSSProperties = {
-    width: isMobile ? "80%" : "100%", // Smaller cards for mobile, full width for others
-    height: isMobile ? "18rem" : "20rem",
-    position: "relative",
-    borderRadius: "10px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-    backgroundColor: "#1F2937",
-    padding: "1.5rem",
-    color: "#E0E0E0",
     display: "flex",
     flexDirection: "column",
+    backgroundColor: "#1F2937",
+    padding: "1.5rem",
+    borderRadius: 10,
+    boxShadow: "0 4px 8px rgba(0,0,0,.2)",
+    color: "#E0E0E0",
+    minHeight: isMobile ? "18rem" : "20rem",
     justifyContent: "space-between",
     alignItems: "center",
+    textAlign: "center",
+  };
+
+  const buttonRowStyle: CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    gap: 10,
+    marginTop: "1rem",
   };
 
   const buttonStyle: CSSProperties = {
     display: "flex",
     alignItems: "center",
-    gap: "8px",
+    gap: 8,
     padding: "8px 12px",
-    // backgroundColor: "#22c55e",
     color: "#fff",
     border: "2px solid #f97316",
-    borderRadius: "5px",
-    cursor: "pointer",
+    borderRadius: 5,
     fontSize: "0.9rem",
     textDecoration: "none",
   };
 
   return (
-    <div style={cardContainerStyle}>
-      <div style={cardStyle}>
-        <h3 style={{ fontSize: "2rem", fontWeight: "bold", textAlign: "center", color: "#f97316" }}>
-          {project.title}
-        </h3>
-        <p style={{ fontSize: "1rem", textAlign: "center", marginBottom: "1rem" }}>{project.description}</p>
-        <div style={{ display: "flex", gap: "10px" }}>
-          {/* Live App Button */}
+    <article style={cardStyle}>
+      <h3
+        style={{
+          fontSize: "1.8rem",
+          fontWeight: "bold",
+          color: "#f97316",
+          marginBottom: "0.5rem",
+        }}
+      >
+        {project.title}
+      </h3>
+
+      <p style={{ fontSize: "1rem" }}>{project.description}</p>
+
+      <div style={buttonRowStyle}>
+        {project.live && (
           <a href={project.live} target="_blank" rel="noopener noreferrer" style={buttonStyle}>
             <FaExternalLinkAlt /> Live App
           </a>
-          {/* GitHub Button */}
+        )}
+        {project.link && (
           <a href={project.link} target="_blank" rel="noopener noreferrer" style={buttonStyle}>
             <FaGithub /> GitHub
           </a>
-        </div>
+        )}
       </div>
-    </div>
+    </article>
   );
-};
-
-// Projects data
-const projects = [
-  {
-    title: "Awesome Social",
-    description: "A social media marketing agency that helps clients build their brand presence online",
-    link: "https://github.com/alexkahndev/awesome-social",
-    live: "https://nagy.vc/",
-  },
-  {
-    title: "Bergen Routes",
-    description: "A wayfinding web application to help users navigate large buildings",
-    link: "https://github.com/bergen-routes/bergenroutes.com",
-    live: "https://bergenroutes.com/",
-  },
-  {
-    title: "Portfolio Site",
-    description: "My personal portfolio showcasing my work and skills.",
-    link: "https://github.com/Agraw-Mindaye/Portfolio",
-    live: "https://agrawmin.netlify.app",
-  },
-  {
-    title: "Embedded Projects",
-    description: "A collection of embedded systems projects.",
-    link: "https://github.com/Agraw-Mindaye/EmbeddedProjects",
-    live: "https://en.wikipedia.org/wiki/Embedded_system",
-  },
-];
-
-export default Projects;
+}
