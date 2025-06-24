@@ -41,6 +41,8 @@ const contentContainerStyle: CSSProperties = {
 export default function App() {
   const [isHovered, setIsHovered] = useState(false);
 
+  const isPointerCapable = window.matchMedia("(hover: hover) and (pointer: fine)").matches; // for hover animations
+
   const buttonStyle: CSSProperties = {
     marginTop: "1rem",
     padding: "0.8rem 3rem",
@@ -77,8 +79,13 @@ export default function App() {
           <button 
             onClick={scrollToContent} 
             style={buttonStyle}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={() => {
+              if (isPointerCapable) setIsHovered(true);
+            }}
+            onMouseLeave={() => {
+              if (isPointerCapable) setIsHovered(false);
+            }}
+            
           >
             Welcome to my page ↓
           </button>
