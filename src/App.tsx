@@ -6,7 +6,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-import { CSSProperties, useEffect, useState } from "react";
+import { CSSProperties, useState } from "react";
 
 const heroSectionStyle: CSSProperties = {
   position: "relative",
@@ -85,7 +85,6 @@ export default function App() {
             onMouseLeave={() => {
               if (isPointerCapable) setIsHovered(false);
             }}
-            
           >
             Welcome to my page ↓
           </button>
