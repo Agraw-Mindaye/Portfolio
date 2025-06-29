@@ -8,34 +8,31 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState<string>("#about");
 
   useEffect(() => {
-    const sectionIds = ["about", "projects", "contact"] as const;
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
+    const sectionIds = ["about", "projects", "contact"];
 
-    if (sections.length === 0) return;
-
-    // when a section crosses the center 40% of the viewport, mark it active
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(`#${entry.target.id}`);
+    const handleScroll = () => {
+      const scrollY = window.scrollY + (window.innerHeight / 3); // buffer for better responsiveness
+      let currentSection = "#about"; // default
+  
+      for (const id of sectionIds) {
+        const section = document.getElementById(id);
+        if (section) {
+          const { top, height } = section.getBoundingClientRect();
+          const sectionTop = window.scrollY + top;
+          if (scrollY >= sectionTop && scrollY < sectionTop + height) {
+            currentSection = `#${id}`;
+            break;
           }
-        });
-      },
-      {
-        // rootMargin tweaks trigger point so the observed area is roughly the
-        // middle of the screen (40% top & bottom margins)
-        root: null,
-        rootMargin: "-40% 0px -40% 0px",
-        threshold: 0
+        }
       }
-    );
+      setActiveSection(currentSection);
+    };
+    
 
-    sections.forEach((section) => observer.observe(section));
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-    return () => observer.disconnect();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
 
@@ -80,7 +77,7 @@ const Navbar = () => {
 
   const linkStyle = (section: string): CSSProperties => ({
     textDecoration: "none",
-    color: activeSection === section ? "#f97316" : "#fff", // Change color only when clicked
+    color: activeSection === section ? "#f97316" : "#fff",
     fontSize: isMobile ? "1.2rem" : "1.5rem",
     fontWeight: "500",
     cursor: "pointer",
