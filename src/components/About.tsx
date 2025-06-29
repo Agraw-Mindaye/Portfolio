@@ -1,8 +1,8 @@
 // About section
 
 import { useSpring, animated } from "@react-spring/web";
-import { FaReact, FaPython, FaGitAlt, FaDatabase, FaJsSquare } from "react-icons/fa";
-import { SiC } from "react-icons/si"; // C icon
+import { FaReact, FaPython, FaGitAlt, FaDatabase, FaJsSquare, FaHtml5, FaCss3Alt } from "react-icons/fa";
+import { SiC, SiCplusplus, SiArduino  } from "react-icons/si"; // C, C++, Arduino
 
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { CSSProperties } from "react";
@@ -31,18 +31,18 @@ const About = () => {
 
   const aboutContainerStyle: CSSProperties = {
     display: "flex",
-    flexDirection: isMobile || isTablet ? "column" : "row", // Column for mobile or tablet, row otherwise
+    flexDirection: isMobile || isTablet ? "column" : "row", // column for mobile or tablet, row for others
     alignItems: "center",
-    justifyContent: isMobile ? "center" : "space-between", // Center content on smaller screens
-    gap: isMobile ? "2.5rem" : isTablet ? "4rem" : "7rem", // Smaller gaps for mobile and tablet
+    justifyContent: isMobile ? "center" : "space-between",
+    gap: isMobile ? "2.5rem" : isTablet ? "4rem" : "7rem",
     maxWidth: "1200px",
     width: "100%",
-    margin: "0 auto", // Center horizontally
+    margin: "0 auto",
   };
 
   const textContainerStyle: CSSProperties = {
     textAlign: "left",
-    maxWidth: isMobile ? "90%" : isTablet ? "70%" : "50%", // Adjust width for different screen sizes
+    maxWidth: isMobile ? "90%" : isTablet ? "70%" : "50%",
   };
 
   const descriptionStyle: CSSProperties = {
@@ -53,8 +53,9 @@ const About = () => {
 
   const skillsContainerStyle: CSSProperties = {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)", // Adjust grid for screens
-    gap: "20px", // Consistent gap
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gridAutoRows: "minmax(100px, auto)",
+    gap: "2rem",
     marginTop: "20px",
     justifyItems: "center",
     alignItems: "center",
@@ -71,8 +72,8 @@ const About = () => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      width: isMobile ? "5.5rem" : "10rem", // Fixed width
-      height:  isMobile ? "5.55rem" : "10rem", // Fixed height
+      width: isMobile ? "5.5rem" : "8rem", // fixed width
+      height:  isMobile ? "5.55rem" : "8rem", // fixed height
       padding: "20px",
       borderRadius: "15px",
       border: `4px solid ${borderColor}`,
@@ -82,12 +83,12 @@ const About = () => {
     };
 
     const iconStyle: CSSProperties = {
-      fontSize: isMobile ? "1.5rem" : "3rem",
+      fontSize: isMobile ? "1.5rem" : "2rem",
       marginBottom: "10px",
     };
 
     const labelStyle: CSSProperties = { 
-      fontSize: isMobile ? "0.8rem" : "1.5rem",
+      fontSize: isMobile ? "0.75rem" : "1rem",
     }
 
     const isPointerCapable = window.matchMedia("(hover: hover) and (pointer: fine)").matches; // for hover animations
@@ -110,39 +111,37 @@ const About = () => {
 
   return (
     <section id="about" style={aboutSectionStyle}>
-      {/* Section Title */}
       <h2 style={titleStyle}>About</h2>
-
-      {/* Content Container */}
       <div style={aboutContainerStyle}>
-        {/* Text Content */}
         <div style={textContainerStyle}>
           <p style={descriptionStyle}>
-            <p>Driven by a passion for problem solving, I'm a software engineer committed
-            to building effecient embedded and full-stack solutions.</p>
+            Driven by a passion for problem solving, I'm a software engineer committed
+            to building effecient embedded and full-stack solutions.
             With expertise in modern technologies like C/C++, Python, React, and SQL, I strive 
             to craft seamless user experiences and write clean, maintainble code.
             When I'm not at my computer, I spend my time cooking, staying active, and exploring new music.
           </p>
         </div>
 
-        {/* Skills */}
         <div style={skillsContainerStyle}>
-          {[
-            { icon: <SiC />, label: "C", borderColor: "#f97316" },
-            { icon: <FaPython />, label: "Python", borderColor: "#f97316" },
-            { icon: <FaJsSquare />, label: "JavaScript", borderColor: "#f97316" },
-            { icon: <FaReact />, label: "React", borderColor: "#f97316" },
-            { icon: <FaDatabase />, label: "SQL", borderColor: "#f97316" },
-            { icon: <FaGitAlt />, label: "Git", borderColor: "#f97316" },
-          ].map((skill, index) => (
-            <AnimatedIcon
-              key={index}
-              icon={skill.icon}
-              label={skill.label}
-              borderColor={skill.borderColor}
-            />
-          ))}
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <AnimatedIcon icon={<SiC />} label="C" borderColor="#f97316" />
+            <AnimatedIcon icon={<SiCplusplus />} label="C++" borderColor="#f97316" />
+            <AnimatedIcon icon={<SiArduino />} label="Embedded" borderColor="#f97316" />
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <AnimatedIcon icon={<FaPython />} label="Python" borderColor="#f97316" />
+            <AnimatedIcon icon={<FaJsSquare />} label="JavaScript" borderColor="#f97316" />
+            <AnimatedIcon icon={<FaDatabase />} label="SQL" borderColor="#f97316" />
+            <AnimatedIcon icon={<FaGitAlt />} label="Git" borderColor="#f97316" />
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <AnimatedIcon icon={<FaHtml5 />} label="HTML" borderColor="#f97316" />
+            <AnimatedIcon icon={<FaCss3Alt />} label="CSS" borderColor="#f97316" />
+            <AnimatedIcon icon={<FaReact />} label="React" borderColor="#f97316" />
+          </div>
         </div>
       </div>
     </section>
@@ -150,4 +149,3 @@ const About = () => {
 };
 
 export default About;
-
