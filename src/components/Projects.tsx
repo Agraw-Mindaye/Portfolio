@@ -8,7 +8,13 @@ const projects = [
     title: "Smart Environmental Dashboard",
     description:
       "A temperature and humidity sensor that logs readings onto an SD card and displays them on an LCD screen.",
-    link: "https://github.com/Agraw-Mindaye/EmbeddedSystems/tree/main/Milestone2_Smart_Environment_Dashboard",
+    link: "https://github.com/Agraw-Mindaye/EmbeddedSystems#smart-environment-dashboard",
+  },
+  {
+    title: "Interactive Control LED Panel",
+    description:
+      "A microcontroller-based system allowing users to switch between different LED modes through physical switches.",
+    link: "https://github.com/Agraw-Mindaye/EmbeddedSystems#interactive-led-control-panel",
   },
   {
     title: "Awesome Social",
